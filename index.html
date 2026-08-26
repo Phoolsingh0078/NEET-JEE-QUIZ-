@@ -1,11 +1,12 @@
+
 <!DOCTYPE html>
 <html>
 <head>
-    <title>My Quiz</title>
+    <title>NEET The Living World Quiz</title>
 
     <style>
         body {
-            font-family: Arial;
+            font-family: Arial, sans-serif;
             text-align: center;
             background: #f2f2f2;
         }
@@ -13,10 +14,15 @@
         .quiz-box {
             background: white;
             width: 90%;
-            max-width: 500px;
-            margin: 50px auto;
+            max-width: 600px;
+            margin: 30px auto;
             padding: 25px;
             border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #222;
         }
 
         button {
@@ -26,10 +32,29 @@
             padding: 12px;
             font-size: 16px;
             cursor: pointer;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            background: #fff;
+        }
+
+        button:hover {
+            background: #eee;
         }
 
         #next {
             display: none;
+            background: #222;
+            color: white;
+        }
+
+        #result {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        #score {
+            font-size: 18px;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -38,7 +63,7 @@
 
 <div class="quiz-box">
 
-    <h1>General Knowledge Quiz</h1>
+    <h1>NEET: The Living World</h1>
 
     <p id="question"></p>
 
@@ -57,62 +82,222 @@
 const questions = [
 
     {
-        question: "भारत की राजधानी क्या है?",
-        answers: ["Mumbai", "Delhi", "Jaipur", "Lucknow"],
+        question: "Which statement best describes the relationship between taxonomy and systematics?",
+        answers: [
+            "Taxonomy deals only with identification, while systematics deals only with naming",
+            "Systematics includes taxonomy along with the study of evolutionary relationships",
+            "Taxonomy deals only with extinct organisms",
+            "Systematics excludes identification and classification"
+        ],
         correct: 1
     },
 
     {
-        question: "भारत का राष्ट्रीय पशु कौन सा है?",
-        answers: ["Lion", "Tiger", "Elephant", "Horse"],
-        correct: 1
-    },
-
-    {
-        question: "भारत का राष्ट्रीय पक्षी कौन सा है?",
-        answers: ["Crow", "Peacock", "Parrot", "Eagle"],
-        correct: 1
-    },
-
-    {
-        question: "भारत में कितने राज्य हैं?",
-        answers: ["26", "28", "30", "32"],
-        correct: 1
-    },
-
-    {
-        question: "सूर्य किस दिशा से निकलता है?",
-        answers: ["West", "North", "East", "South"],
+        question: "In binomial nomenclature, the first word of a scientific name represents the:",
+        answers: [
+            "Species",
+            "Family",
+            "Genus",
+            "Order"
+        ],
         correct: 2
     },
 
     {
-        question: "पानी का रासायनिक सूत्र क्या है?",
-        answers: ["CO2", "H2O", "O2", "NaCl"],
+        question: "Which rule is correct for writing a scientific name?",
+        answers: [
+            "Both genus and species begin with capital letters",
+            "Genus begins with a capital letter and the specific epithet begins with a small letter",
+            "Genus begins with a small letter and species begins with a capital letter",
+            "Both words always begin with capital letters"
+        ],
         correct: 1
     },
 
     {
-        question: "भारत का राष्ट्रीय फूल कौन सा है?",
-        answers: ["Rose", "Lotus", "Sunflower", "Lily"],
-        correct: 1
-    },
-
-    {
-        question: "एक सप्ताह में कितने दिन होते हैं?",
-        answers: ["5", "6", "7", "8"],
+        question: "In the scientific name Mangifera indica, the word 'indica' represents the:",
+        answers: [
+            "Genus",
+            "Family",
+            "Specific epithet",
+            "Order"
+        ],
         correct: 2
     },
 
     {
-        question: "पृथ्वी का उपग्रह कौन है?",
-        answers: ["Mars", "Moon", "Sun", "Venus"],
+        question: "Which sequence represents the correct ascending order of taxonomic categories?",
+        answers: [
+            "Species → Genus → Family → Order",
+            "Genus → Species → Family → Order",
+            "Species → Family → Genus → Order",
+            "Family → Species → Order → Genus"
+        ],
+        correct: 0
+    },
+
+    {
+        question: "Two species belonging to the same genus are expected to:",
+        answers: [
+            "Always belong to the same species",
+            "Share some common characteristics but remain distinct species",
+            "Always represent the same variety",
+            "Have no taxonomic relationship"
+        ],
         correct: 1
     },
 
     {
-        question: "भारत का राष्ट्रीय फल कौन सा है?",
-        answers: ["Apple", "Mango", "Banana", "Orange"],
+        question: "Which taxonomic aid is mainly used for the study and reference of preserved plant specimens?",
+        answers: [
+            "Herbarium",
+            "Zoological park",
+            "Museum",
+            "Taxonomic key"
+        ],
+        correct: 0
+    },
+
+    {
+        question: "Which information is especially useful on a herbarium sheet as a taxonomic record?",
+        answers: [
+            "Only the colour of the specimen",
+            "Only the collector's name",
+            "Collection date and locality",
+            "Only the common name"
+        ],
+        correct: 2
+    },
+
+    {
+        question: "The basic principle used in a taxonomic key is based on:",
+        answers: [
+            "Habitat only",
+            "Contrasting characters",
+            "Body size only",
+            "Geographical distribution only"
+        ],
+        correct: 1
+    },
+
+    {
+        question: "A taxonomic key generally identifies an organism by using:",
+        answers: [
+            "A series of contrasting statements",
+            "Only its geographical location",
+            "Only its common name",
+            "Only its evolutionary age"
+        ],
+        correct: 0
+    },
+
+    {
+        question: "Which pair is correctly matched?",
+        answers: [
+            "Herbarium — preservation of living animals",
+            "Museum — collection of preserved specimens",
+            "Key — collection of photographs only",
+            "Botanical garden — collection of fossils only"
+        ],
+        correct: 1
+    },
+
+    {
+        question: "What is the major difference between a botanical garden and a zoological park?",
+        answers: [
+            "Botanical gardens maintain living plants, while zoological parks maintain living animals",
+            "Both maintain only preserved specimens",
+            "Botanical gardens maintain only fossils",
+            "Zoological parks maintain only plants"
+        ],
+        correct: 0
+    },
+
+    {
+        question: "Which statement most appropriately describes the biological concept of species?",
+        answers: [
+            "A group of organisms having only the same body size",
+            "A group of organisms with fundamental similarities that can generally interbreed to produce fertile offspring",
+            "A group of organisms found only in the same habitat",
+            "All organisms belonging to the same genus"
+        ],
+        correct: 1
+    },
+
+    {
+        question: "If two organisms belong to the same genus but different species, the most appropriate conclusion is that they:",
+        answers: [
+            "Have no similarities",
+            "Share some genus-level characteristics",
+            "Are completely identical",
+            "Must belong to the same species"
+        ],
+        correct: 1
+    },
+
+    {
+        question: "The taxonomic category 'family' is generally positioned:",
+        answers: [
+            "Above species and below genus",
+            "Above genus and below order",
+            "Above order and below class",
+            "Above kingdom and below class"
+        ],
+        correct: 1
+    },
+
+    {
+        question: "Which of the following is NOT a taxonomic category?",
+        answers: [
+            "Genus",
+            "Species",
+            "Family",
+            "Habitat"
+        ],
+        correct: 3
+    },
+
+    {
+        question: "Which statement about a taxon is correct?",
+        answers: [
+            "A taxon refers only to a species",
+            "A taxon can represent a group at any taxonomic rank",
+            "A taxon exists only at the kingdom level",
+            "A taxon is used only for extinct organisms"
+        ],
+        correct: 1
+    },
+
+    {
+        question: "Identification of an organism followed by assigning its scientific name involves:",
+        answers: [
+            "Identification and nomenclature",
+            "Evolution and mutation",
+            "Respiration and nutrition",
+            "Growth and reproduction"
+        ],
+        correct: 0
+    },
+
+    {
+        question: "Which statement about nomenclature is incorrect?",
+        answers: [
+            "Scientific names facilitate universal communication",
+            "Binomial nomenclature generally uses two words",
+            "Scientific names are the same as local common names",
+            "Scientific naming follows established rules"
+        ],
+        correct: 2
+    },
+
+    {
+        question: "The major purpose of taxonomic studies is to:",
+        answers: [
+            "Memorise only common names",
+            "Organise identification, nomenclature and classification of organisms",
+            "Study only extinct organisms",
+            "Study only the habitats of organisms"
+        ],
         correct: 1
     }
 
@@ -120,18 +305,20 @@ const questions = [
 
 let currentQuestion = 0;
 let score = 0;
+let answered = false;
 
 function showQuestion() {
 
-    document.getElementById("result").innerHTML = "";
+    answered = false;
 
+    document.getElementById("result").innerHTML = "";
     document.getElementById("next").style.display = "none";
 
     let q = questions[currentQuestion];
 
     document.getElementById("question").innerHTML =
-        "Question " + (currentQuestion + 1) + "/10<br><br>" +
-        q.question;
+        "Question " + (currentQuestion + 1) + "/" + questions.length +
+        "<br><br>" + q.question;
 
     let answerBox = document.getElementById("answers");
 
@@ -150,10 +337,13 @@ function showQuestion() {
         answerBox.appendChild(button);
 
     });
-
 }
 
 function checkAnswer(selected) {
+
+    if (answered) return;
+
+    answered = true;
 
     let q = questions[currentQuestion];
 
@@ -172,7 +362,6 @@ function checkAnswer(selected) {
     }
 
     document.getElementById("next").style.display = "block";
-
 }
 
 function nextQuestion() {
@@ -191,12 +380,10 @@ function nextQuestion() {
         document.getElementById("answers").innerHTML = "";
 
         document.getElementById("result").innerHTML =
-            "Your Score: " + score + "/10";
+            "Your Score: " + score + "/" + questions.length;
 
         document.getElementById("next").style.display = "none";
-
     }
-
 }
 
 showQuestion();
@@ -204,4 +391,4 @@ showQuestion();
 </script>
 
 </body>
-</html>
+    </html>
