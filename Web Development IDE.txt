@@ -1,0 +1,212 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Quiz</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            background: #f2f2f2;
+        }
+
+        .quiz-box {
+            background: white;
+            width: 90%;
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 25px;
+            border-radius: 10px;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 12px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #next {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="quiz-box">
+
+    <h1>General Knowledge Quiz</h1>
+
+    <p id="question"></p>
+
+    <div id="answers"></div>
+
+    <p id="result"></p>
+
+    <button id="next" onclick="nextQuestion()">Next Question</button>
+
+    <p id="score"></p>
+
+</div>
+
+<script>
+
+const questions = [
+
+    {
+        question: "भारत की राजधानी क्या है?",
+        answers: ["Mumbai", "Delhi", "Jaipur", "Lucknow"],
+        correct: 1
+    },
+
+    {
+        question: "भारत का राष्ट्रीय पशु कौन सा है?",
+        answers: ["Lion", "Tiger", "Elephant", "Horse"],
+        correct: 1
+    },
+
+    {
+        question: "भारत का राष्ट्रीय पक्षी कौन सा है?",
+        answers: ["Crow", "Peacock", "Parrot", "Eagle"],
+        correct: 1
+    },
+
+    {
+        question: "भारत में कितने राज्य हैं?",
+        answers: ["26", "28", "30", "32"],
+        correct: 1
+    },
+
+    {
+        question: "सूर्य किस दिशा से निकलता है?",
+        answers: ["West", "North", "East", "South"],
+        correct: 2
+    },
+
+    {
+        question: "पानी का रासायनिक सूत्र क्या है?",
+        answers: ["CO2", "H2O", "O2", "NaCl"],
+        correct: 1
+    },
+
+    {
+        question: "भारत का राष्ट्रीय फूल कौन सा है?",
+        answers: ["Rose", "Lotus", "Sunflower", "Lily"],
+        correct: 1
+    },
+
+    {
+        question: "एक सप्ताह में कितने दिन होते हैं?",
+        answers: ["5", "6", "7", "8"],
+        correct: 2
+    },
+
+    {
+        question: "पृथ्वी का उपग्रह कौन है?",
+        answers: ["Mars", "Moon", "Sun", "Venus"],
+        correct: 1
+    },
+
+    {
+        question: "भारत का राष्ट्रीय फल कौन सा है?",
+        answers: ["Apple", "Mango", "Banana", "Orange"],
+        correct: 1
+    }
+
+];
+
+let currentQuestion = 0;
+let score = 0;
+
+function showQuestion() {
+
+    document.getElementById("result").innerHTML = "";
+
+    document.getElementById("next").style.display = "none";
+
+    let q = questions[currentQuestion];
+
+    document.getElementById("question").innerHTML =
+        "Question " + (currentQuestion + 1) + "/10<br><br>" +
+        q.question;
+
+    let answerBox = document.getElementById("answers");
+
+    answerBox.innerHTML = "";
+
+    q.answers.forEach(function(answer, index) {
+
+        let button = document.createElement("button");
+
+        button.innerHTML = answer;
+
+        button.onclick = function() {
+            checkAnswer(index);
+        };
+
+        answerBox.appendChild(button);
+
+    });
+
+}
+
+function checkAnswer(selected) {
+
+    let q = questions[currentQuestion];
+
+    if (selected === q.correct) {
+
+        score++;
+
+        document.getElementById("result").innerHTML =
+            "Correct!";
+
+    } else {
+
+        document.getElementById("result").innerHTML =
+            "Wrong!";
+
+    }
+
+    document.getElementById("next").style.display = "block";
+
+}
+
+function nextQuestion() {
+
+    currentQuestion++;
+
+    if (currentQuestion < questions.length) {
+
+        showQuestion();
+
+    } else {
+
+        document.getElementById("question").innerHTML =
+            "Quiz Complete!";
+
+        document.getElementById("answers").innerHTML = "";
+
+        document.getElementById("result").innerHTML =
+            "Your Score: " + score + "/10";
+
+        document.getElementById("next").style.display = "none";
+
+    }
+
+}
+
+showQuestion();
+
+</script>
+
+</body>
+</html>
+
+Download the Web Programming IDE (Html/Css/Js)
+https://play.google.com/store/apps/details?id=codetoinvent.codetoinvent.web_development
